@@ -2,7 +2,9 @@
 
 Format the text into bold, italic and strike by applying HTML tags.
 
-<a href="https://stackblitz.com/edit/angular-ivy-gdpuva?file=src%2Fapp%2Fapp.component.html">DEMO</a>
+# Demo
+
+<a href="https://stackblitz.com/edit/angular-ivy-gdpuva?file=src%2Fapp%2Fapp.component.html">CLICK HERE</a>
 
 # Installation
 
