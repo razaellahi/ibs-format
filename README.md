@@ -2,6 +2,8 @@
 
 Format the text into bold, italic and strike by applying HTML tags.
 
+<a href="https://stackblitz.com/edit/angular-ivy-gdpuva?file=src%2Fapp%2Fapp.component.html">DEMO</a>
+
 # Installation
 
 `npm i ibs-format --save`

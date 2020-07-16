@@ -1,0 +1,26 @@
+{
+  "name": "ibs-format",
+  "version": "1.0.0",
+  "description": "Format the text into bold, italic and strike by applying HTML tags.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/razaellahi/ibs-format.git"
+  },
+  "keywords": [
+    "text",
+    "format",
+    "bold",
+    "italic",
+    "strike"
+  ],
+  "author": "Raza Ellahi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/razaellahi/ibs-format/issues"
+  },
+  "homepage": "https://github.com/razaellahi/ibs-format#readme"
+}
