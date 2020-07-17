@@ -4,7 +4,7 @@ Format the text into bold, italic and strike by applying HTML tags.
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-gdpuva?file=src%2Fapp%2Fapp.component.html">CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-unjrxq?file=src%2Fapp%2Fapp.component.ts">CLICK HERE</a>
 
 # Installation
 
