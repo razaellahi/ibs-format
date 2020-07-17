@@ -42,7 +42,7 @@ var myText = ibsFormat(myText, tagArray);
 
  The function will return the result with tags.
 
-`"Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>."`
+`Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
 
 
 HTML...
