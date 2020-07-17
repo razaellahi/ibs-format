@@ -13,10 +13,8 @@ function ibsFormat(value, arr) {
         e[2] = (e[0].length + 1).toString();
         if (e[1] == "*") {
           value = astericHandler(value, e[0], e[1], parseInt(e[2]), space);
-          console.log("upper songle")
         } else if (e[1] == '**') {
           value = doubleAstericHandler(value, e[0], e[1], parseInt(e[2]), space);
-          console.log("upper double")
         } else {
           value = getFormat(value, e[0], e[1], parseInt(e[2]), space);
         }
@@ -26,9 +24,7 @@ function ibsFormat(value, arr) {
       arr[2] = (arr[0].length + 1).toString();
       if (arr[1] == "*") {
         value = astericHandler(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
-        console.log("lower songle")
       } else if (arr[1] == '**') {
-        console.log("lower double")
         value = doubleAstericHandler(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
       } else {
         value = getFormat(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
