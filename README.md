@@ -47,7 +47,7 @@ var myText = ibsFormat(myText, tagArray);
 
 HTML...
 
-<p [innerHTML]="myText"></p>
+`<p [innerHTML]="myText"></p>`
 
 
 The result will...
