@@ -1,6 +1,6 @@
 {
   "name": "ibs-format",
-  "version": "1.0.2",
+  "version": "1.1.2",
   "description": "Format the text into bold, italic and strike by applying HTML tags.",
   "main": "index.js",
   "scripts": {
