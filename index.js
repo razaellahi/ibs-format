@@ -1,7 +1,5 @@
 function ibsFormat(value, arr, linky) {
-  console.log("linky "+JSON.stringify(linky) );
     let output = null;
-  
     if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
       let counter = 0;
       let space = "";
@@ -36,7 +34,6 @@ function ibsFormat(value, arr, linky) {
     } else {
       output = null;
     }
-  
     if (value != "" && value != null && value != undefined && linky && linky.detectLinks == true) {
       let targ;
       if (linky.target != null && linky.target != "") {
@@ -46,9 +43,7 @@ function ibsFormat(value, arr, linky) {
       }
       output = linkfy(value, targ);
     }
-  
     return output;
-  
   }
   
   function doubleAstericHandler(text, tag, iden, trim, space) {

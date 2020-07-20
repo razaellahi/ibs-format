@@ -4,7 +4,7 @@ Format the text like bold, italic, strike, and more by applying HTML tags also d
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-unjrxq?file=src%2Fapp%2Fapp.component.ts">CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-5zr1iq?file=src%2Fapp%2Fapp.component.ts">CLICK HERE</a>
 
 # Installation
 
@@ -17,7 +17,6 @@ npm i ibs-format --save
 ```js
 import { ibsFormat } from 'ibs-format';
 ```
-### Formatting the text
 
  For formatting the function 'ibsFormat' needs two arguments.
    1) the text with identifiers in the first argument, in the form of string.
@@ -41,28 +40,28 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
  myText = ibsFormat(myText, tagArray);
 ```
 
- The function will return the result with tags.
+ ### The function will return the result with tags.
 
 `Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
 
 
-HTML...
+### HTML
 
 `<p [innerHTML]="myText"></p>`
 
 
-The result will...
+### The result will
 
 Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
-### Auto detect links in text
 
-For auto detecting links in the text and converting them to <a> tags the function 'ibsFormat' needs three arguments
+# Auto detect links in text
+
+For auto detecting links in the text and converting them to `<a>` tags the function 'ibsFormat' needs three arguments
  * To enable auto detecting links create an object and set its 'detectLinks' property to true.
  * You can also specify the target of the links by creating a property 'target' in the object, it is optional with default value '_self'.
  * The value of 'target' property can be set to, '_blank', '_self', '_parent', '_top'.
  * Put the object in third argument.
-
  Like:
 
  ```js
@@ -75,24 +74,24 @@ For auto detecting links in the text and converting them to <a> tags the functio
  myText = ibsFormat(myText, tagArray, obj);
  ```
 
-The function will return...
+### The function will return
 
 `The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.`
 
-The result will...
+### The result will
 
 The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.
 
 
-In order to skip the text formatting set the second argument null, like:
+### In order to skip the text formatting set the second argument null, like:
 
 ```js
 myText = ibsFormat(myText, null , obj);
 ```
 
-```
 For detecting the auto links, the function Will match the following cases
 
+```
 http://www.foufos.gr
 https://www.foufos.gr
 http://foufos.gr
@@ -108,9 +107,10 @@ www.aa.com
 http://aa.com
 http://www.aa.com
 https://www.aa.com
-
+```
 Will NOT match the following
 
+```
 www.foufos
 www.foufos-.gr
 www.-foufos.gr
