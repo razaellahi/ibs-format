@@ -1,6 +1,6 @@
 # What is this ?
 
-Format the text like bold, italic and strike by applying HTML tags.
+Format the text like bold, italic, strike, and more by applying HTML tags.
 
 # Demo
 
