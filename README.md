@@ -1,6 +1,6 @@
 # What is this ?
 
-Format the text like bold, italic, strike, and more by applying HTML tags.
+Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML <a> tags.
 
 # Demo
 
@@ -17,8 +17,9 @@ npm i ibs-format --save
 ```js
 import { ibsFormat } from 'ibs-format';
 ```
+### Formatting the text
 
- The function 'ibsFormat' needs two arguments.
+ For formatting the function 'ibsFormat' needs two arguments.
    1) the text with identifiers in the first argument, in the form of string.
    2) tags and identifiers in the second argument, in the form of string array.
 
@@ -37,7 +38,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
  * Now the function will look like.
 
 ```js
-var myText = ibsFormat(myText, tagArray);
+ myText = ibsFormat(myText, tagArray);
 ```
 
  The function will return the result with tags.
@@ -54,8 +55,72 @@ The result will...
 
 Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
+### Auto detect links in text
 
-## Precautions
+For auto detecting links in the text and converting them to <a> tags the function 'ibsFormat' needs three arguments
+ * To enable auto detecting links create an object and set its 'detectLinks' property to true.
+ * You can also specify the target of the links by creating a property 'target' in the object, it is optional with default value '_self'.
+ * The value of 'target' property can be set to, '_blank', '_self', '_parent', '_top'.
+ * Put the object in third argument.
+
+ Like:
+
+ ```js
+ var myText = "The *best* website for learning _JS_ is https://www.w3schools.com/."
+
+ var tagArray = [['b','*'],['i','_'],['strike','~']];
+
+ var obj = {detectLinks: true, target: '_blank'};
+
+ myText = ibsFormat(myText, tagArray, obj);
+ ```
+
+The function will return...
+
+`The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.`
+
+The result will...
+
+The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.
+
+
+In order to skip the text formatting set the second argument null, like:
+
+```js
+myText = ibsFormat(myText, null , obj);
+```
+
+```
+For detecting the auto links, the function Will match the following cases
+
+http://www.foufos.gr
+https://www.foufos.gr
+http://foufos.gr
+http://www.foufos.gr/kino
+http://werer.gr
+www.foufos.gr
+www.mp3.com
+www.t.co
+http://t.co
+http://www.t.co
+https://www.t.co
+www.aa.com
+http://aa.com
+http://www.aa.com
+https://www.aa.com
+
+Will NOT match the following
+
+www.foufos
+www.foufos-.gr
+www.-foufos.gr
+foufos.gr
+http://www.foufos
+http://foufos
+www.mp3#.com
+```
+
+# Precautions
 
 * Don't change the index positioning.
 * The function does not supports double or multiple identifiers rather than double asterisks '**'.
