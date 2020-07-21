@@ -23,11 +23,11 @@ function ibsFormat(value, arr, linky) {
       } else {
         arr[2] = (arr[0].length + 1).toString();
         if (arr[1] == "*") {
-          value = astericHandler(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
+          value = astericHandler(value, arr[0], arr[1], parseInt(arr[2]), " ");
         } else if (arr[1] == '**') {
-          value = doubleAstericHandler(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
+          value = doubleAstericHandler(value, arr[0], arr[1], parseInt(arr[2]), " ");
         } else {
-          value = getFormat(value, arr[0], arr[1], parseInt(arr[2]), " &nbsp");
+          value = getFormat(value, arr[0], arr[1], parseInt(arr[2]), " ");
         }
       }
       output = value;
@@ -269,15 +269,23 @@ function ibsFormat(value, arr, linky) {
   
   function linkfy(text, target) {
     text = text.replace(/&nbsp/g, " ");
-    let expression = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+    let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+    let emailRegex = /(\S+@\S+\.\S+)/gim;
+    let httpVerify = /^((http|https|ftp):\/\/)/;
     let regex = new RegExp(expression);
     let a = text.split(" ");
     let finalText = "";
     a.map((part, index) => {
       if (part.match(regex)) {
         let ref = part;
-        ref = ref.replace(/<[^>]*>?/gm, '');
-        a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+        ref = ref.replace(/<[^>]*>?/gm, "");
+        if (ref.match(httpVerify)) {
+          a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+        } else if (ref.match(emailRegex)) {
+          a[index] = `<a href='mailto:${ref}' target='${target}'>${part}</a>`;
+        } else {
+          a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
+        }
       }
     });
     a.forEach(e => {

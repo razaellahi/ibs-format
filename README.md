@@ -65,7 +65,7 @@ For auto detecting links in to the text and converting them to HTML `<a>` tags, 
  Like:
 
  ```js
- var myText = "The *best* website for learning _JS_ is https://www.w3schools.com/."
+ var myText = "The *best* website for learning _JS_ is https://www.w3schools.com/ and my email is info@myemail.com."
 
  var tagArray = [['b','*'],['i','_'],['strike','~']];
 
@@ -76,49 +76,21 @@ For auto detecting links in to the text and converting them to HTML `<a>` tags, 
 
 ### The function will return
 
-`The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.`
+````
+The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>
+and my email is <a href='mailto:info@myemail.com' target='_blank'>info@myemail.com</a>.
+````
 
 ### The result will
 
-The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>.
+The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools.com/' target='_blank'>https://www.w3schools.com/</a>
+and my email is <a href='mailto:info@myemail.com' target='_blank'>info@myemail.com</a>.
 
 
 ### In order to skip the text formatting set the second argument null, like:
 
 ```js
 myText = ibsFormat(myText, null , obj);
-```
-
-
-For detecting the auto links, the function Will match the following cases
-
-```
-http://www.foufos.gr
-https://www.foufos.gr
-http://foufos.gr
-http://www.foufos.gr/kino
-http://werer.gr
-www.foufos.gr
-www.mp3.com
-www.t.co
-http://t.co
-http://www.t.co
-https://www.t.co
-www.aa.com
-http://aa.com
-http://www.aa.com
-https://www.aa.com
-```
-Will NOT match the following
-
-```
-www.foufos
-www.foufos-.gr
-www.-foufos.gr
-foufos.gr
-http://www.foufos
-http://foufos
-www.mp3#.com
 ```
 
 # Precautions
