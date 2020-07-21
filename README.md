@@ -1,10 +1,10 @@
 # What is this ?
 
-Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML <a> tags.
+Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML `<a>` tags.
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-5zr1iq?file=src%2Fapp%2Fapp.component.ts">CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-pdp3ld?file=src%2Fapp%2Fapp.component.ts">CLICK HERE</a>
 
 # Installation
 
@@ -40,7 +40,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
  myText = ibsFormat(myText, tagArray);
 ```
 
- ### The function will return the result with tags.
+ ### The function will return the result with tags
 
 `Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
 
@@ -57,7 +57,7 @@ Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
 # Auto detect links in text
 
-For auto detecting links in the text and converting them to `<a>` tags the function 'ibsFormat' needs three arguments
+For auto detecting links in to the text and converting them to HTML `<a>` tags, the function 'ibsFormat' needs three arguments
  * To enable auto detecting links create an object and set its 'detectLinks' property to true.
  * You can also specify the target of the links by creating a property 'target' in the object, it is optional with default value '_self'.
  * The value of 'target' property can be set to, '_blank', '_self', '_parent', '_top'.
@@ -88,6 +88,7 @@ The <b>best</b> website for learning <i>JS</i> is <a href='https://www.w3schools
 ```js
 myText = ibsFormat(myText, null , obj);
 ```
+
 
 For detecting the auto links, the function Will match the following cases
 
