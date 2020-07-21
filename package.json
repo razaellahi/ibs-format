@@ -1,6 +1,6 @@
 {
   "name": "ibs-format",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML '<a>' tags.",
   "main": "index.js",
   "scripts": {
