@@ -1,10 +1,10 @@
-# What is this ?
+# Description
 
-Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML `<a>` tags.
+Format the text like bold, italic, strike, and more by applying HTML tags and detect links in the text and convert them to HTML `<a>` tags.
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-pueiy9?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-v54dbf?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
 
 # Installation
 
@@ -40,7 +40,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
  myText = ibsFormat(myText, tagArray);
 ```
 
- ### The function will return the result with tags
+### The function will return the result with tags
 
 `Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
 
@@ -92,6 +92,47 @@ and my email is <a href='mailto:info@myemail.com' target='_blank'>info@myemail.c
 ```js
 myText = ibsFormat(myText, null , obj);
 ```
+
+
+## Format the text at run time.
+
+In order to format the text at run time in HTML, create a custom pipe and use the function there.
+
+### Create a custom pipe, 'custom-pipe.pipe.ts'.
+
+```js
+import { Pipe, PipeTransform } from '@angular/core';
+import { ibsFormat } from "ibs-format";
+
+@Pipe({ name: 'ibsformat' })
+export class ibsformatPipe implements PipeTransform {
+  transform(value: any, args?: any): any {
+    
+    value = ibsFormat(value, [["b", "*"], ["i", "_"], ["strike", "~"]],{ detectLinks: true, target: "_blank" });
+
+    return value;
+  }
+}
+```
+
+### Make its entry in 'module.ts'.
+
+```js
+import { ibsformatPipe } from './custom-pipe.pipe';
+
+// also add in declarations array
+@NgModule({
+  declarations: [ AppComponent, ibsformatPipe ],
+})
+```
+
+### Now use the pipe directly in HTMl
+
+`<p [innerHTML]="myText | ibsformat"></p>`
+
+For full example of custom pipe, see the live demo mention above.
+
+
 
 # Precautions
 

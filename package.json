@@ -1,7 +1,7 @@
 {
   "name": "ibs-format",
-  "version": "1.2.1",
-  "description": "Format the text like bold, italic, strike, and more by applying HTML tags also detect links in text and convert them to HTML '<a>' tags.",
+  "version": "1.2.2",
+  "description": "Format the text like bold, italic, strike, and more by applying HTML tags and detect links in the text and convert them to HTML '<a>' tags.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,7 +22,9 @@
     "find links",
     "mail",
     "mailto",
-    "url"
+    "url",
+    "JS",
+    "angular"
   ],
   "author": "Raza Ellahi",
   "license": "MIT",
