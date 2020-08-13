@@ -8,7 +8,7 @@ function ibsFormat(value, arr, linky) {
           if (counter == 0) {
             space = " &nbsp";
           } else {
-            space = "";
+            space = " ";
           }
           e[2] = (e[0].length + 1).toString();
           if (e[1] == "*") {
