@@ -269,7 +269,7 @@ function ibsFormat(value, arr, linky) {
   
   function linkfy(text, target) {
     text = text.replace(/&nbsp/g, " ");
-    let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/gi;
+    let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
     let emailRegex = /(\S+@\S+\.\S+)/gim;
     let httpVerify = /^((http|https|ftp):\/\/)/;
     let regex = new RegExp(expression);
