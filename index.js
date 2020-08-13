@@ -273,6 +273,7 @@ function ibsFormat(value, arr, linky) {
     let emailRegex = /(\S+@\S+\.\S+)/gim;
     let httpVerify = /^((http|https|ftp):\/\/)/;
     let regex = new RegExp(expression);
+    text = text.replace(/\n/g," <br>");
     let a = text.split(" ");
     let finalText = "";
     a.map((part, index) => {
