@@ -43,7 +43,7 @@ function ibsFormat(value, arr, linky) {
       }
       output = linkfy(value, targ);
     }
-    return output;
+    return output.slice(0, -10);
   }
   
   function doubleAstericHandler(text, tag, iden, trim, space) {
