@@ -4,7 +4,7 @@ Format the text like bold, italic, strike, and more by applying HTML tags and de
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-vnpwji?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-jnkuqk?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
 
 # Installation
 
@@ -23,16 +23,16 @@ import { ibsFormat } from 'ibs-format';
    2) tags and identifiers in the second argument, in the form of string array.
 
 ```js
-var myText = "Once upon a time, there was a *thristy* ~_crow_~."
+var myText = "Once upon a time, there was a *thristy* ~_crow_~ and !this is marked text!."
 ```
 
 In the array, the tag symbols in the first index and their identifier in the second index.
 
 ```js
-var tagArray = [['b','*'],['i','_'],['strike','~']];
+var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 ```
 
- * Here symbol, 'b' is using for 'bold', 'i' for 'italic' and 'strike' for 'strike' tag.
+ * Here symbol, 'b' is using for 'bold', 'i' for 'italic', 'strike' for 'strike' and 'mark' for 'mark' tag with their respective Identifiers.
  * The user can use as many tags and their identifiers of his own choice.
  * Now the function will look like.
 
@@ -42,7 +42,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
 
 ### The function will return the result with tags
 
-`Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
+`Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike> and <mark>this is marked text</mark>.`
 
 
 ### HTML
@@ -52,7 +52,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~']];
 
 ### The result will
 
-Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
+Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike> and <mark>this is marked text</mark>.
 
 
 # Auto detect links in text
@@ -67,7 +67,7 @@ For auto detecting links in to the text and converting them to HTML `<a>` tags, 
  ```js
  var myText = "The *best* website for learning _JS_ is https://www.w3schools.com/ and my email is info@myemail.com."
 
- var tagArray = [['b','*'],['i','_'],['strike','~']];
+ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 
  var obj = {detectLinks: true, target: '_blank'};
 
@@ -108,7 +108,7 @@ import { ibsFormat } from "ibs-format";
 export class ibsformatPipe implements PipeTransform {
   transform(value: any, args?: any): any {
     
-    value = ibsFormat(value, [["b", "*"], ["i", "_"], ["strike", "~"]],{ detectLinks: true, target: "_blank" });
+    value = ibsFormat(value, [["b", "*"], ["i", "_"], ["strike", "~"],["mark","!"]],{ detectLinks: true, target: "_blank" });
 
     return value;
   }
@@ -132,7 +132,7 @@ import { ibsformatPipe } from './custom-pipe.pipe';
 
 For full example of custom pipe, see the live demo mention above.
 
-
+Feel free to report any bugs.
 
 # Precautions
 
