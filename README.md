@@ -4,7 +4,7 @@ Format the text like bold, italic, strike, and more by applying HTML tags and de
 
 # Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-jnkuqk?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-pkvdv1?file=src%2Fapp%2Fcustom-pipe.pipe.ts" target='_blank'>CLICK HERE</a>
 
 # Installation
 
@@ -55,7 +55,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
 
-# Auto detect links in text
+# Auto detect links in the text
 
 For auto detecting links in to the text and converting them to HTML `<a>` tags, the function 'ibsFormat' needs three arguments
  * To enable auto detecting links create an object and set its 'detectLinks' property to true.
