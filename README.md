@@ -23,7 +23,7 @@ import { ibsFormat } from 'ibs-format';
    2) tags and identifiers in the second argument, in the form of string array.
 
 ```js
-var myText = "Once upon a time, there was a *thristy* ~_crow_~ and !this is marked text!."
+var myText = "Once upon a time, there was a *thristy* ~_crow_~."
 ```
 
 In the array, the tag symbols in the first index and their identifier in the second index.
@@ -42,7 +42,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 
 ### The function will return the result with tags
 
-`Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike> and <mark>this is marked text</mark>.`
+`Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.`
 
 
 ### HTML
@@ -52,7 +52,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 
 ### The result will
 
-Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike> and <mark>this is marked text</mark>.
+Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
 
 # Auto detect links in text

@@ -1,24 +1,16 @@
 function ibsFormat(value, arr, linky) {
     let output = null;
     if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
-      let counter = 0;
-      let space = "";
       if (arr[0].constructor === Array) {
         arr.map(e => {
-          if (counter == 0) {
-            space = " &nbsp";
-          } else {
-            space = " ";
-          }
           e[2] = (e[0].length + 1).toString();
           if (e[1] == "*") {
-            value = astericHandler(value, e[0], e[1], parseInt(e[2]), space);
+            value = astericHandler(value, e[0], e[1], parseInt(e[2]), " ");
           } else if (e[1] == '**') {
-            value = doubleAstericHandler(value, e[0], e[1], parseInt(e[2]), space);
+            value = doubleAstericHandler(value, e[0], e[1], parseInt(e[2]), " ");
           } else {
-            value = getFormat(value, e[0], e[1], parseInt(e[2]), space);
+            value = getFormat(value, e[0], e[1], parseInt(e[2]), " ");
           }
-          ++counter;
         });
       } else {
         arr[2] = (arr[0].length + 1).toString();
@@ -43,7 +35,7 @@ function ibsFormat(value, arr, linky) {
       }
       output = linkfy(value, targ);
     }
-    return output.slice(0, -10);
+    return output.trim();
   }
   
   function doubleAstericHandler(text, tag, iden, trim, space) {
@@ -268,7 +260,6 @@ function ibsFormat(value, arr, linky) {
   }
   
   function linkfy(text, target) {
-    text = text.replace(/&nbsp/g, " ");
     let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
     let emailRegex = /(\S+@\S+\.\S+)/gim;
     let httpVerify = /^((http|https|ftp):\/\/)/;
@@ -291,9 +282,9 @@ function ibsFormat(value, arr, linky) {
     });
     a.forEach(e => {
       if (e == "") {
-        finalText = finalText + "&nbsp";
+        finalText = finalText + " ";
       } else {
-        finalText = finalText + e + "&nbsp";
+        finalText = finalText + e + " ";
       }
     });
     return finalText;
