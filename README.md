@@ -2,9 +2,13 @@
 
 Format the text like bold, italic, strike, and more by applying HTML tags and detect links in the text and convert them to HTML `<a>` tags.
 
-# Demo
+# Online Demo
 
 <a href="https://stackblitz.com/edit/angular-ivy-pkvdv1?file=src%2Fapp%2Fcustom-pipe.pipe.ts" target='_blank'>CLICK HERE</a>
+
+# Supported browsers
+
+Full support and tested, over Google Chrome, Microsoft Edge, Mozilla Firefox and Internet Explorer 11.
 
 # Installation
 
@@ -34,6 +38,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 
  * Here symbol, 'b' is using for 'bold', 'i' for 'italic', 'strike' for 'strike' and 'mark' for 'mark' tag with their respective Identifiers.
  * The user can use as many tags and their identifiers of his own choice.
+ * Some special characters can't be used as identifiers for example, dollar sign '$'.
  * Now the function will look like.
 
 ```js
@@ -132,11 +137,12 @@ import { ibsformatPipe } from './custom-pipe.pipe';
 
 For full example of custom pipe, see the live demo mention above.
 
-Feel free to report any bugs.
+### Feel free to report any bugs.
 
 # Precautions
 
 * Don't change the index positioning.
 * The function does not supports double or multiple identifiers rather than double asterisks '**'.
 * Don't use same identifiers for multiple tags.
+* Some special characters can't be used as identifiers for example, dollar sign '$'.
 
