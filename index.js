@@ -267,16 +267,16 @@ function linkfy(text, target) {
   text = text.replace(/\n/g, " <br>");
   let a = text.split(" ");
   let finalText = "";
-  a.map((part, index) => {
+  a.map(function (part, index) {
     if (part.match(regex)) {
       let ref = part;
       ref = ref.replace(/<[^>]*>?/gm, "");
       if (ref.match(httpVerify)) {
-        a[index] = "<a href='"+ref+"' target='"+target+"'>"+part+"</a>";
+        a[index] = "<a href='" + ref + "' target='" + target + "'>" + part + "</a>";
       } else if (ref.match(emailRegex)) {
-        a[index] = "<a href='mailto:"+ref+"' target='"+target+"'>"+part+"</a>";
+        a[index] = "<a href='mailto:" + ref + "' target='" + target + "'>" + part + "</a>";
       } else {
-        a[index] = "<a href='http://"+ref+"' target='"+target+"'>"+part+"</a>";
+        a[index] = "<a href='http://" + ref + "' target='" + target + "'>" + part + "</a>";
       }
     }
   });
