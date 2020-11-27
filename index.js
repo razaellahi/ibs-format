@@ -260,7 +260,8 @@ function getFormat(text, tag, iden, trim, space) {
 }
 
 function linkfy(text, target) {
-  let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+  // let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
+  let expression = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
   let emailRegex = /(\S+@\S+\.\S+)/gim;
   let httpVerify = /^((http|https|ftp):\/\/)/;
   let regex = new RegExp(expression);
