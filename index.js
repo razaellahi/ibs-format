@@ -260,24 +260,37 @@ function getFormat(text, tag, iden, trim, space) {
 }
 
 function linkfy(text, target) {
-  // let expression = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{2,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/gi;
-  let expression = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
+  let strictUrlExpression = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
+  let looseUrlExpression = /^https?\:\/\/[^\/\s]+(\/.*)?$/;
+  let ip4Expression = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$/g;
   let emailRegex = /(\S+@\S+\.\S+)/gim;
   let httpVerify = /^((http|https|ftp):\/\/)/;
-  let regex = new RegExp(expression);
-  text = text.replace(/\n/g, " <br>");
+  let strictUrlRegex = new RegExp(strictUrlExpression);
+  let looseUrlRegex = new RegExp(looseUrlExpression);
+  let ip4Regex = new RegExp(ip4Expression);
+  text = text.replace(/\n/g, " <br> ");
   let a = text.split(" ");
   let finalText = "";
   a.map(function (part, index) {
-    if (part.match(regex)) {
-      let ref = part;
-      ref = ref.replace(/<[^>]*>?/gm, "");
-      if (ref.match(httpVerify)) {
-        a[index] = "<a href='" + ref + "' target='" + target + "'>" + part + "</a>";
-      } else if (ref.match(emailRegex)) {
-        a[index] = "<a href='mailto:" + ref + "' target='" + target + "'>" + part + "</a>";
-      } else {
-        a[index] = "<a href='http://" + ref + "' target='" + target + "'>" + part + "</a>";
+    if (part != " " && part != "" && part != undefined && part != "<br>") {
+      if (part.match(looseUrlRegex)) {
+        let ref = part;
+        ref = ref.replace(/<[^>]*>?/gm, "");
+        a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+      } else if (part.match(strictUrlRegex)) {
+        let ref = part;
+        ref = ref.replace(/<[^>]*>?/gm, "");
+        if (ref.match(httpVerify)) {
+          a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+        } else if (ref.match(emailRegex)) {
+          a[index] = `<a href='mailto:${ref}' target='${target}'>${part}</a>`;
+        } else {
+          a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
+        }
+      } else if (part.match(ip4Regex)) {
+        let ref = part;
+        ref = ref.replace(/<[^>]*>?/gm, "");
+        a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
       }
     }
   });
