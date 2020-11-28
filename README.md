@@ -4,7 +4,7 @@ Format the text like bold, italic, strike, and more by applying HTML tags and de
 
 # Online Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-kj7uru?file=src%2Fapp%2Fapp.component.ts" target='_blank'>CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-exb3cn?file=src%2Fapp%2Fcustom-pipe.pipe.ts" target='_blank'>CLICK HERE</a>
 
 # Supported browsers
 
