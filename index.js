@@ -260,7 +260,7 @@ function getFormat(text, tag, iden, trim, space) {
 }
 
 function linkfy(text, target) {
-  let strictUrlExpression = /(https?:\/\/)?[\w\-~]+(\.[\w\-~]+)+(\/[\w\-~@:%]*)*(#[\w\-]*)?(\?[^\s]*)?/gi;
+  let strictUrlExpression = /[-a-zA-Z0-9@:%_\+.~#?&\/=]{1,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi;
   let looseUrlExpression = /^https?\:\/\/[^\/\s]+(\/.*)?$/;
   let ip4Expression = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+$/g;
   let emailRegex = /(\S+@\S+\.\S+)/gim;
