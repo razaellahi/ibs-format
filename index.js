@@ -301,6 +301,7 @@ function linkfy(text, target) {
       finalText = finalText + e + " ";
     }
   });
+  finalText = finalText.replace(/ <br> /g, "<br>");
   return finalText;
 }
 
