@@ -4,7 +4,7 @@ Detect the user-defined identifiers in the text and convert them into HTML tags 
 
 # Online Demo
 
-<a href="https://stackblitz.com/edit/angular-ivy-45lb85?file=src%2Fapp%2Fcustom-pipe.pipe.ts" target='_blank'>CLICK HERE</a>
+<a href="https://stackblitz.com/edit/angular-ivy-sm7jjb?file=src%2Fapp%2Fcustom-pipe.pipe.ts" target='_blank'>CLICK HERE</a>
 
 # Supported browsers
 
