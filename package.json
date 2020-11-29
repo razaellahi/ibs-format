@@ -1,7 +1,7 @@
 {
   "name": "ibs-format",
-  "version": "1.4.0",
-  "description": "Format the text like bold, italic, strike, and more by applying HTML tags and detect links in the text and convert them to HTML '<a>' tags.",
+  "version": "1.4.1",
+  "description": "Detect the user-defined identifiers in the text and convert them into HTML tags like bold, italic, strike, and many more having XSS (Cross-site scripting) security with escaping functionality, also detect the links like URLs, email, and IP addresses and wrap them into Anchor tag `<a>`.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +24,14 @@
     "mailto",
     "url",
     "JS",
-    "angular"
+    "angular",
+    "text formatting",
+    "user defined HTML tags",
+    "HTML tags",
+    "detect links",
+    "linkify",
+    "IP addresses",
+    "XSS"
   ],
   "author": "Raza Ellahi",
   "license": "MIT",

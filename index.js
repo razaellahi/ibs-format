@@ -1,6 +1,11 @@
-function ibsFormat(value, arr, linky) {
+function ibsFormat(value, arr, linky, escaping) {
   let output = null;
+  escaping = escaping && escaping.allowXssEscaping == false ? false : true;
   if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
+    if (escaping) {
+      value = value.replace(/</g, "&lt;");
+      value = value.replace(/>/g, "&gt;");
+    }
     if (arr[0].constructor === Array) {
       arr.map(function (e) {
         e[2] = (e[0].length + 1).toString();
@@ -35,7 +40,7 @@ function ibsFormat(value, arr, linky) {
     }
     output = linkfy(value, targ);
   }
-  return output.trim();
+  return output ? output.trim() : "";
 }
 
 function doubleAstericHandler(text, tag, iden, trim, space) {

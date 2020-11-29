@@ -1,6 +1,6 @@
 # Description
 
-Format the text like bold, italic, strike, and more by applying HTML tags and detect links in the text and convert them to HTML `<a>` tags.
+Detect the user-defined identifiers in the text and convert them into HTML tags like bold, italic, strike, and many more having XSS (Cross-site scripting) security with escaping functionality, also detect the links like URLs, email, and IP addresses and wrap them into Anchor tag `<a>`.
 
 # Online Demo
 
@@ -95,11 +95,25 @@ and my email is <a href='mailto:info@myemail.com' target='_blank'>info@myemail.c
 ### In order to skip the text formatting set the second argument null, like:
 
 ```js
-myText = ibsFormat(myText, null , obj);
+myText = ibsFormat(myText, null, obj);
+```
+
+# Cross Site Scripting (XSS).
+
+XSS attacks enable attackers to inject client-side scripts into web pages viewed by other users. In order to prevent those scripts, the
+client side tags are converted into nonexecutable through escaping. These security checks are enabled by default and it is recommended to
+keep them enabled, but in order to bypass these security checks place a forth argument in the function. 
+
+### In order to skip the XSS security checking:
+
+Place a JSON object in the forth argument and set it's value to false, if the forth argument is missing then it's value will be true by default. 
+
+```js
+myText = ibsFormat(myText, tagArray, obj, { allowXssEscaping : false });
 ```
 
 
-## Format the text at run time.
+# Format the text at run time.
 
 In order to format the text at run time in HTML, create a custom pipe and use the function there.
 
