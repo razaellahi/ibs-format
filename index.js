@@ -2,11 +2,11 @@ function ibsFormat(value, arr, linky, escaping) {
   let output = null;
   escaping = escaping && escaping.allowXssEscaping == false ? false : true;
   if (value) {
-    value = value.replace(/\n/g, " <br> ");
     if (escaping) {
       value = value.replace(/</g, "&lt;");
       value = value.replace(/>/g, "&gt;");
     }
+    value = value.replace(/\n/g, " <br> ");
   }
   if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
     if (arr[0].constructor === Array) {
