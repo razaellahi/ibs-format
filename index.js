@@ -1,11 +1,14 @@
 function ibsFormat(value, arr, linky, escaping) {
   let output = null;
   escaping = escaping && escaping.allowXssEscaping == false ? false : true;
-  if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
+  if (value) {
+    value = value.replace(/\n/g, " <br> ");
     if (escaping) {
       value = value.replace(/</g, "&lt;");
       value = value.replace(/>/g, "&gt;");
     }
+  }
+  if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
     if (arr[0].constructor === Array) {
       arr.map(function (e) {
         e[2] = (e[0].length + 1).toString();
@@ -39,6 +42,9 @@ function ibsFormat(value, arr, linky, escaping) {
       targ = "_self";
     }
     output = linkfy(value, targ);
+  }
+  if (output) {
+    output = output.replace(/ <br> /g, "<br>");
   }
   return output ? output.trim() : "";
 }
@@ -265,20 +271,24 @@ function getFormat(text, tag, iden, trim, space) {
 }
 
 function linkfy(text, target) {
-  let strictUrlExpression = /[-a-zA-Z0-9@:%_\+.~#?&\/=]{1,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/gi;
+  let strictUrlExpression = /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/gi;
   let looseUrlExpression = /^https?\:\/\/[^\/\s]+(\/.*)?$/;
   let ip4Expression = /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]):[0-9]+\b(\/[-a-zA-Z0-9@:%_\+.~#?&\/=]*)?/g;
-  let emailRegex = /(\S+@\S+\.\S+)/gim;
+  let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   let httpVerify = /^((http|https|ftp):\/\/)/;
   let strictUrlRegex = new RegExp(strictUrlExpression);
   let looseUrlRegex = new RegExp(looseUrlExpression);
   let ip4Regex = new RegExp(ip4Expression);
-  text = text.replace(/\n/g, " <br> ");
+  let emailRegexx = new RegExp(emailRegex);
   let a = text.split(" ");
   let finalText = "";
   a.map(function (part, index) {
     if (part != " " && part != "" && part != undefined && part != "<br>") {
-      if (part.match(looseUrlRegex)) {
+      if (part.match(emailRegexx)) {
+        let ref = part;
+        ref = ref.replace(/<[^>]*>?/gm, "");
+        a[index] = `<a href='mailto:${ref}' target='${target}'>${part}</a>`;
+      } else if (part.match(looseUrlRegex)) {
         let ref = part;
         ref = ref.replace(/<[^>]*>?/gm, "");
         a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
@@ -287,8 +297,6 @@ function linkfy(text, target) {
         ref = ref.replace(/<[^>]*>?/gm, "");
         if (ref.match(httpVerify)) {
           a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
-        } else if (ref.match(emailRegex)) {
-          a[index] = `<a href='mailto:${ref}' target='${target}'>${part}</a>`;
         } else {
           a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
         }
@@ -306,7 +314,6 @@ function linkfy(text, target) {
       finalText = finalText + e + " ";
     }
   });
-  finalText = finalText.replace(/ <br> /g, "<br>");
   return finalText;
 }
 
