@@ -287,23 +287,23 @@ function linkfy(text, target) {
       if (part.match(emailRegexx)) {
         let ref = part;
         ref = ref.replace(/<[^>]*>?/gm, "");
-        a[index] = `<a href='mailto:${ref}' target='${target}'>${part}</a>`;
+        a[index] = "<a href='mailto:" + ref + "' target='" + target + "'>" + part + "</a>";
       } else if (part.match(looseUrlRegex)) {
         let ref = part;
         ref = ref.replace(/<[^>]*>?/gm, "");
-        a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+        a[index] = "<a href='" + ref + "' target='" + target + "'>" + part + "</a>";
       } else if (part.match(strictUrlRegex)) {
         let ref = part;
         ref = ref.replace(/<[^>]*>?/gm, "");
         if (ref.match(httpVerify)) {
-          a[index] = `<a href='${ref}' target='${target}'>${part}</a>`;
+          a[index] = "<a href='" + ref + "' target='" + target + "'>" + part + "</a>";
         } else {
-          a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
+          a[index] = "<a href='http://" + ref + "' target='" + target + "'>" + part + "</a>";
         }
       } else if (part.match(ip4Regex)) {
         let ref = part;
         ref = ref.replace(/<[^>]*>?/gm, "");
-        a[index] = `<a href='http://${ref}' target='${target}'>${part}</a>`;
+        a[index] = "<a href='http://" + ref + "' target='" + target + "'>" + part + "</a>";
       }
     }
   });
