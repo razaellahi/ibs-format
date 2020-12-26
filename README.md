@@ -3,18 +3,18 @@
 Detect the user-defined identifiers in the text and convert them into HTML tags like bold, italic, strike, and many more having XSS (Cross-site scripting) security with escaping functionality, also detect the links like URLs, email, and IP addresses and wrap them into Anchor tag `<a>`.
 
 ## Table of Contents
-- [Online Demo](#demo)
+- [Online Demo](#online-demo)
 - [Supported browsers](#browsers)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Text Formatting](#text-formatting)
 - [Links Detecting](#links-detecting)
-- [Cross Site Scripting (XSS)](#cross-site-scripting)
-- [Format the text at run time using custom Pipe](#pipe)
-- [Use the external 'ngx-linkifyjs' library for detecting the links](#linkifyjs)
+- [Cross Site Scripting (XSS)](#cross-site-scripting-(xss))
+- [Format the text at run time using custom Pipe](#format-the-text-at-run-time-using-custom-pipe)
+- [Use the external 'ngx-linkifyjs' library for detecting the links](#use-the-external-'ngx-linkifyjs'-library-for-detecting-the-links)
 - [Precautions](#precautions)
 
-<a name="demo"/>
+<a name="online-demo"/>
 
 # Online Demo
 
@@ -122,7 +122,7 @@ and my email is <a href='mailto:info@myemail.com' target='_blank'>info@myemail.c
 ```js
 myText = ibsFormat(myText, null, obj);
 ```
-<a name="cross-site-scripting"/>
+<a name="cross-site-scripting-(xss)"/>
 
 # Cross Site Scripting (XSS).
 
@@ -138,7 +138,7 @@ Place a JSON object in the forth argument and set it's value to false, if the fo
 myText = ibsFormat(myText, tagArray, obj, { allowXssEscaping : false });
 ```
 
-<a name="pipe"/>
+<a name="format-the-text-at-run-time-using-custom-pipe"/>
 
 # Format the text at run time using custom Pipe.
 
@@ -176,7 +176,7 @@ import { ibsformatPipe } from './custom-pipe.pipe';
 
 `<p [innerHTML]="myText | ibsformat"></p>`
 
-<a name="linkifyjs"/>
+<a name="use-the-external-'ngx-linkifyjs'-library-for-detecting-the-links"/>
 
 # Use the external 'ngx-linkifyjs' library for detecting the links
 
