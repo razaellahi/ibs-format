@@ -8,7 +8,7 @@ Detect the user-defined identifiers in the text and convert them into HTML tags 
 - [Installation](#installation)
 - [Usage](#usage)
 - [Text Formatting](#text-formatting)
-- [Links Detecting](#Links-detecting)
+- [Links Detecting](#links-detecting)
 - [Cross Site Scripting (XSS)](#cross-site-scripting)
 - [Format the text at run time using custom Pipe](#pipe)
 - [Use the external 'ngx-linkifyjs' library for detecting the links](#linkifyjs)
@@ -83,7 +83,7 @@ var tagArray = [['b','*'],['i','_'],['strike','~'],["mark","!"]];
 
 Once upon a time, there was a <b>thristy</b> <strike><i>crow</i></strike>.
 
-<a name="Links-detecting"/>
+<a name="links-detecting"/>
 
 # Links Detecting
 
