@@ -1,4 +1,5 @@
 function ibsFormat(value, arr, linky, escaping) {
+  const originalArr = JSON.parse(JSON.stringify(arr));
   let output = null;
   escaping = escaping && escaping.allowXssEscaping == false ? false : true;
   if (value) {
@@ -46,7 +47,26 @@ function ibsFormat(value, arr, linky, escaping) {
   if (output) {
     output = output.replace(/ <br> /g, "<br>");
   }
+  output = transformContentInsideEm(output, originalArr);
   return output ? output.trim() : "";
+}
+
+function transformContentInsideEm(inputString, originalArr) {
+  // Define the tag-to-replacement mapping as an array with 3 elements: [tag, symbol, priority]
+ 
+  // Match the <em> tag and its content
+  return inputString.replace(/<em>(.*?)<\/em>/gs, function(match, content) {
+      // Perform tag-to-symbol replacement inside the <em> content
+      originalArr.forEach(([tag, replacement]) => {
+          // Replace opening and closing tags of each mapped tag with the symbol
+          const openTag = new RegExp(`<${tag}>`, 'g');
+          const closeTag = new RegExp(`</${tag}>`, 'g');
+          content = content.replace(openTag, replacement).replace(closeTag, replacement);
+      });
+      
+      // Return the modified <em> tag with converted content
+      return `<em>${content}</em>`;
+  });
 }
 
 function doubleAstericHandler(text, tag, iden, trim, space) {
