@@ -10,6 +10,64 @@ function ibsFormat(value, arr, linky, escaping) {
     value = value.replace(/\n/g, " <br> ");
   }
   if (value != "" && value != null && value != undefined && arr && arr.length > 0) {
+    // Preprocess to handle empty formatting markers
+    if (arr[0].constructor === Array) {
+      arr.forEach(function (formatConfig) {
+        let marker = formatConfig[1];
+        // Create regex to match empty formatting markers (marker followed by optional whitespace then same marker)
+        let escapedMarker = marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        let emptyMarkerRegex = new RegExp(escapedMarker + '\\s*' + escapedMarker, 'g');
+        
+        // Find all empty marker pairs and track their positions
+        let matches = [];
+        let match;
+        while ((match = emptyMarkerRegex.exec(value)) !== null) {
+          matches.push({
+            start: match.index,
+            end: match.index + match[0].length,
+            content: match[0]
+          });
+          // Reset lastIndex to avoid infinite loop with zero-length matches
+          if (match.index === emptyMarkerRegex.lastIndex) {
+            emptyMarkerRegex.lastIndex++;
+          }
+        }
+        
+        // Process matches from end to start to avoid index shifting
+        for (let i = matches.length - 1; i >= 0; i--) {
+          let matchObj = matches[i];
+          let beforeMatch = value.substring(0, matchObj.start);
+          let afterMatch = value.substring(matchObj.end);
+          // Replace with just the markers (no formatting)
+          value = beforeMatch + marker + marker + afterMatch;
+        }
+      });
+    } else {
+      let marker = arr[1];
+      let escapedMarker = marker.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      let emptyMarkerRegex = new RegExp(escapedMarker + '\\s*' + escapedMarker, 'g');
+      
+      let matches = [];
+      let match;
+      while ((match = emptyMarkerRegex.exec(value)) !== null) {
+        matches.push({
+          start: match.index,
+          end: match.index + match[0].length,
+          content: match[0]
+        });
+        if (match.index === emptyMarkerRegex.lastIndex) {
+          emptyMarkerRegex.lastIndex++;
+        }
+      }
+      
+      for (let i = matches.length - 1; i >= 0; i--) {
+        let matchObj = matches[i];
+        let beforeMatch = value.substring(0, matchObj.start);
+        let afterMatch = value.substring(matchObj.end);
+        value = beforeMatch + marker + marker + afterMatch;
+      }
+    }
+    
     if (arr[0].constructor === Array) {
       arr.map(function (e) {
         e[2] = (e[0].length + 1).toString();
@@ -118,10 +176,19 @@ function doubleAstericHandler(text, tag, iden, trim, space) {
           box.push(e.indexOf(iden, v));
         }
       }
-      e = e.replace('**', "<" + tag + ">");
-      e = e.replace('**', "</" + tag + ">");
+      
+      // Check if there's content between the ** markers
+      let firstIndex = box[0];
+      let lastIndex = box[box.length - 1];
+      let contentBetween = e.substring(firstIndex + 2, lastIndex);
+      
+      if (contentBetween.trim().length > 0) {
+        e = e.replace('**', "<" + tag + ">");
+        e = e.replace('**', "</" + tag + ">");
+      }
       box = [];
     }
+    
     arr.push(e);
   });
   arr.forEach(function (e) {
@@ -162,6 +229,7 @@ function astericHandler(text, tag, iden, trim, space) {
     ) {
       if (loopCounter == singleStericCounter && loopCounter % 2 == 0) {
       } else {
+        // Check if there's actual content between paired asterisks across words
         if (flag == "1") {
           e = e.replace(/\x2a/g, "<" + tag + ">");
           flag = "2";
@@ -188,8 +256,14 @@ function astericHandler(text, tag, iden, trim, space) {
       }
       let firstIndex = box[0];
       let lastIndex = box[box.length - 1];
-      e = replaceChar(e, "<" + tag + ">", firstIndex);
-      e = replaceChar(e, "</" + tag + ">", lastIndex + trim);
+      
+      // Check if there's content between the * markers
+      let contentBetween = e.substring(firstIndex + 1, lastIndex);
+      
+      if (contentBetween.trim().length > 0) {
+        e = replaceChar(e, "<" + tag + ">", firstIndex);
+        e = replaceChar(e, "</" + tag + ">", lastIndex + trim);
+      }
       box = [];
     }
 
@@ -265,8 +339,13 @@ function getFormat(text, tag, iden, trim, space) {
       let firstIndex = box[0];
       let lastIndex = box[box.length - 1];
 
-      e = replaceChar(e, "<" + tag + ">", firstIndex);
-      e = replaceChar(e, "</" + tag + ">", lastIndex + trim);
+      // Check if there's content between the formatting markers
+      let contentBetween = e.substring(firstIndex + iden.length, lastIndex);
+      
+      if (contentBetween.trim().length > 0) {
+        e = replaceChar(e, "<" + tag + ">", firstIndex);
+        e = replaceChar(e, "</" + tag + ">", lastIndex + trim);
+      }
 
       box = [];
     }
